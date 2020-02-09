@@ -79,19 +79,19 @@ nvidia-smi示例图，图像中每个参数含义可参照这篇博客。[nvidia
 
 ### 1.2.1、Linux用户（Ubuntu系列）
 
-**Step1 配置SSH：[2.1.1](#2.1.1安装openssh-client)-->[2.1.4](#2.1.4ssh连接操作)**
+**Step1 配置SSH：[2.1.1](#user1)-->[2.1.4](#user2)**
 
-**Step2 配置虚拟环境：[3.3.1](#3.3.1创建虚拟环境)-->[3.3.2](#3.3.2jupyter使用虚拟环境)或者[3.3.1](#3.3.1、创建虚拟环境)**
+**Step2 配置虚拟环境：[3.3.1](#user3)-->[3.3.2](#user4)或者[3.3.1](#user3)**
 
-**Step3 配置调用远程计算资源：[4.1.1](#4.1.1、Pycharm(版本2019.3)实现)或[4.1.2](#4.1.2、JupyterLab实现)**
+**Step3 配置调用远程计算资源：[4.1.1](#user4)或[4.1.2](#user5)**
 
 ### 1.2.2、Windows用户
 
-**Step1 配置SSH（安装Xshell）：[2.2](#2.2、windows系统)**
+**Step1 配置SSH（安装Xshell）：[2.2](#user6)**
 
-**Step2 配置虚拟环境：[3.3.1](#3.3.1、创建虚拟环境)-->[3.3.2](#3.3.2、jupyter使用虚拟环境)或者[3.3.1](#3.3.1、创建虚拟环境)**
+**Step2 配置虚拟环境：[3.3.1](#user3)-->[3.3.2](#user4)或者[3.3.1](#user3)**
 
-**Step3 配置调用远程计算资源：[4.1.1](#4.1.1、Pycharm(版本2019.3)实现)或[4.2.2](#4.2.2、JupyterLab实现)**
+**Step3 配置调用远程计算资源：[4.2.1](#user8)-->[4.1.1](#user4)或[4.2.2](#user7)**
 
 
 ## 1.3、管理员类
@@ -111,8 +111,9 @@ nvidia-smi示例图，图像中每个参数含义可参照这篇博客。[nvidia
 ## 2.1、 Linux系统（Ubuntu系列）
 
 ### 2.1.1、安装openssh-client
+<span id='user1'></span>
 
-openssh-client是客户端，它的作用是只想登录别的机器的ssh，也就是本地机器用来登录远程机器。安装在local机器中，安装代码如下（打开终端）：
+(user_1)openssh-client是客户端，它的作用是只想登录别的机器的ssh，也就是本地机器用来登录远程机器。安装在local机器中，安装代码如下（打开终端）：
 
 - sudo apt-get install openssh-client  //安装客户端到local机器中
 - ssh-keygen  //生成私钥和公钥，一直按回车默认即可
@@ -139,6 +140,8 @@ openssh-server是服务端，用来开放ssh服务，也就是以本机作为远
 
 ### 2.1.4、ssh连接操作
 
+<span id='user_2'></span>
+
 >实现自动登录，将本地机器的ssh公钥拷贝到远程机器的ssh中，下次连接只需添加按照下面的连接就可以，不需要添加密码。当然第一次添加是需要输入密码的，还需要管理员将修改远程机器ssh的配置文件，开放密码登录的权限。**具体修改配置可参考[博客](https://www.linuxidc.com/Linux/2015-07/119608.htm)[管理员负责]**。
 
 - ssh-copy-id -i /home/xiaonan/.ssh/id_rsa.pub remote@192.168.112.2 -p 22  //（配置）将本地ssh公钥复制到远程机器的ssh中
@@ -147,6 +150,7 @@ openssh-server是服务端，用来开放ssh服务，也就是以本机作为远
 
 ## 2.2、windows系统
 
+<span id='user6'></span>
 ### 2.2.1、通过Xshell使用密钥连接Linux
 
 >在windows里使用Xshell来连接远程Linux，[Xshell下载地址](http://wm.makeding.com/iclk/?zoneid=18724)。
@@ -313,6 +317,7 @@ eval "$(pyenv virtualenv-init -)"
 
 ### 3.3.1、创建虚拟环境
 
+<span id='user3'></span>
 **下面在终端的操作指令：**
 
 - pyenv versions        //查看pyenv管理下的python版本
@@ -344,6 +349,7 @@ eval "$(pyenv virtualenv-init -)"
 
 
 ### 3.3.2、Jupyter使用虚拟环境
+<span id='user4'></span>
 
 **在上述创建虚拟环境操作之后，重启一个终端，并输入如下命令：**
 
@@ -382,6 +388,7 @@ eval "$(pyenv virtualenv-init -)"
 ## 4.1、Linux系统（Ubuntu系列）
 
 ### 4.1.1、Pycharm(版本2019.3)实现
+<span id='user4'></span>
 
 **Step1 将本地项目同步到远程服务中：**
 
@@ -414,6 +421,7 @@ eval "$(pyenv virtualenv-init -)"
 ![](guide/14.png)
 
 ### 4.1.2、JupyterLab实现
+<span id='user5'></span>
 
 >JupyterLab使用远程计算资源，主要是通过ssh建立本地（local）机器和远程（remote）机器端口转发隧道，即两个机器之间建立端口对接，保持远程机器中的JupyterLab端口映射到本地机器，本地机器可以类似于在本地安装了JupyterLab并使用它。
 
@@ -440,7 +448,7 @@ eval "$(pyenv virtualenv-init -)"
 ## 4.2、Windows系统
 
 ### 4.2.1、Pycharm(版本2019.3)实现
-
+<span id='user8'></span>
 >window的配置类似于Linux中的配置，可以查看上述Linux的配置流程。但是在2、步骤时windows是不同的。windows用户需要从Xshell中导出私钥，在Pycharm中选择私钥进行连接。
 
 1、打开Xshell中的用户密钥管理者，选择前面生成的密钥并导出，选择特定格式的私钥保存。
@@ -453,6 +461,7 @@ eval "$(pyenv virtualenv-init -)"
 ![](guide/47.png)
 
 ### 4.2.2、JupyterLab实现
+<span id='user7'></span>
 >Jupyter的实现原理在Linux实现中已阐述，可查看上述。下面具体讲述使用Xshell配置流程。
 
 1、打开Xshell，新建Jupyter的连接客户端，配置远程主机的ip地址，然后点击用户身份验证，选择‘Public Key’进行连接。
