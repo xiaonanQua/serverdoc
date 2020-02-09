@@ -183,6 +183,10 @@ openssh-server是服务端，用来开放ssh服务，也就是以本机作为远
 
 7、通过下面命令查看文件是否上传成功，然后将密钥添加到authorized_keys中，并查看是否添加成功。其中两处横线为xiaonan和Dell用户的密钥，竖线部分为新添加用户的密钥。
 
+- cat  id_rsa_2048.pub >> authorized_keys //将公钥添加到服务器的公钥库中
+
+- cat authorized_keys
+
 ![](guide/41.png)
 
 8、重启ssh服务才能使上述配置成功！
